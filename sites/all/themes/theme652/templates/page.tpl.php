@@ -209,7 +209,6 @@
 		<div class="footer-wrapper clearfix">
 			<?php print render($page['footer_left']); ?>
 			<?php print render($page['footer']); ?>
-			<?php if ($is_front): ?>More Games Drupal Templates at <a rel="nofollow" href="http://www.templatemonster.com/category/games-drupal-templates/" target="_blank">TemplateMonster.com</a><?php endif; ?>
 		</div><!-- /#footer-wrapper -->
 	</footer><!-- /#footer -->
 
