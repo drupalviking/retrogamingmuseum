@@ -341,7 +341,7 @@ function cloud_zoom_field_formatter_info() {
 
   $formatters['cloud_zoom'] = array(
     'label' => t('Cloud zoom'),
-    'field types' => array('image'),
+    'field types' => array('image', 'atom_reference'),
     'settings' => $default_settings,
   );
 
@@ -565,6 +565,14 @@ function theme_cloud_zoom_image_gallery($variables) {
   $id = drupal_html_id('cloud-zoom');
 
   foreach ($items as $delta => $item) {
+    //Check to see if the item is a Scald atom
+    if(isset($item['sid'])){
+      //If it is a Scald atom, you have to load the scald atom, and then load the file item,
+      //convert that into an array
+      $scald = scald_atom_load($item['sid']);
+      $item = (array)file_load($scald->base_entity->fid);
+    }
+    
     // Build images.
     $zoomed = $variables['zoom_style'] ? image_style_url($variables['zoom_style'], $item['uri']) : file_create_url($item['uri']);
     $slide = cloud_zoom_get_img_tag($variables['slide_style'], $item);
